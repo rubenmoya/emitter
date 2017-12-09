@@ -1,0 +1,35 @@
+{
+  "name": "emitter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/emitter.js",
+  "scripts": {
+    "build": "webpack --define process.env.NODE_ENV=production",
+    "start": "webpack -w",
+    "test": "jest",
+    "test:watch": "jest --watch ./src"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^21.1.8",
+    "awesome-typescript-loader": "^3.4.1",
+    "jest": "^21.2.1",
+    "source-map-loader": "^0.2.3",
+    "typescript": "^2.6.2",
+    "uglifyjs-webpack-plugin": "^1.1.2",
+    "webpack": "^3.10.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|js)$": "<rootDir>/preprocessor.js"
+    },
+    "testMatch": [
+      "<rootDir>/src/**/*.test.(ts|js)"
+    ]
+  }
+}
