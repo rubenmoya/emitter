@@ -38,6 +38,23 @@ describe('Emitter', () => {
       expect(emit.listeners.has('boom')).toBeTruthy();
       expect(emit.listeners.get('boom')).toEqual([rick, morty]);
     });
+
+    it('can simulate "once"', () => {
+      const counter = jest.fn();
+      const handlers = [1, 2, 3, 4, 5].map(i => {
+        // create .once fn
+        function fn() {
+          emit.off('once', fn);
+          counter();
+        }
+        return fn;
+      });
+      handlers.forEach(fn => emit.on('once', fn));
+      emit.emit('once');
+      expect(emit.listeners.has('once')).toBeTruthy();
+      expect(emit.listeners.get('once')).toEqual([]);
+      expect(counter).toHaveBeenCalledTimes(5);
+    });
   });
 
   describe('.off', () => {

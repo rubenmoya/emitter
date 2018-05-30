@@ -19,6 +19,6 @@ export default class Emitter {
 
   emit(type: string, payload: any) {
     const listeners = this.listeners.has(type) && this.listeners.get(type);
-    listeners && listeners.forEach(callback => callback(payload));
+    listeners && listeners.slice().forEach(callback => callback(payload));
   }
 }
